@@ -14,11 +14,12 @@ import useStyles from "./style";
 const Product = ({ product }) => {
   const classes = useStyles();
 
+  /* return <div>test</div>; */
   return (
     <Card className={classes.root}>
       <CardMedia
         className={classes.media}
-        image={product.image}
+        image={product.image.url}
         title={product.name}
       />
       <CardContent>
@@ -27,12 +28,16 @@ const Product = ({ product }) => {
             {product.name}
           </Typography>
 
-          <Typography variant="h5">{product.price}</Typography>
+          <Typography variant="h5">
+            {product.price.formatted_with_code}
+          </Typography>
         </div>
 
-        <Typography variant="h2" color="textSecondary">
-          {product.description}
-        </Typography>
+        <Typography
+          dangerouslySetInnerHTML={{ __html: product.description }}
+          variant="h2"
+          color="textSecondary"
+        />
       </CardContent>
 
       <CardActions disableSpacing className={classes.cardActions}>
